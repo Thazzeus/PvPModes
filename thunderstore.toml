@@ -5,8 +5,8 @@ schemaVersion = "0.0.1"
 namespace = "Thazzeus"
 name = "PvPModes"
 versionNumber = "0.1.0"
-description = "Tools for a variety of PvP."
-websiteUrl = "https://github.com/decaprime/CommunityCommands"
+description = "Tools to implement a variety of PvP modes."
+websiteUrl = "https://github.com/thazzeus"
 containsNsfwContent = false
 
 [package.dependencies]

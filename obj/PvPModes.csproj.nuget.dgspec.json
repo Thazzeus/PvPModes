@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\Robert\\Documents\\GitHub\\PvPModes\\PvPModes.csproj": {
-      "version": "0.1.5",
+      "version": "0.1.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\Robert\\Documents\\GitHub\\PvPModes\\PvPModes.csproj",
         "projectName": "PvPModes",
@@ -50,7 +50,7 @@
             "BepInEx.Core": {
               "include": "Compile",
               "target": "Package",
-              "version": "[6.0.0-be*, )"
+              "version": "[6.0.0-be.668, )"
             },
             "BepInEx.PluginInfoProps": {
               "target": "Package",
@@ -59,7 +59,11 @@
             "BepInEx.Unity.IL2CPP": {
               "include": "Compile",
               "target": "Package",
-              "version": "[6.0.0-be*, )"
+              "version": "[6.0.0-be.668, )"
+            },
+            "VRising.Bloodstone": {
+              "target": "Package",
+              "version": "[0.1.4, )"
             },
             "VRising.Unhollowed.Client": {
               "target": "Package",
@@ -67,7 +71,7 @@
             },
             "VRising.VampireCommandFramework": {
               "target": "Package",
-              "version": "[0.8.*, )"
+              "version": "[0.8.0, )"
             }
           },
           "imports": [
