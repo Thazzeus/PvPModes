@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyName>PvPModes</AssemblyName>
+		<Description>Tools to implement a variety of PvP modes.</Description>
+		<Version>0.1.0</Version>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<LangVersion>latest</LangVersion>
+		<RootNamespace>PvPModes</RootNamespace>
+		<Authors>Thazzeus</Authors>
+	</PropertyGroup>
+  <ItemGroup>
+	<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.668" IncludeAssets="compile" />
+	<PackageReference Include="BepInEx.Core" Version="6.0.0-be.668" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+    <PackageReference Include="VRising.Unhollowed.Client" Version="0.6.5.*" />
+	<PackageReference Include="VRising.Bloodstone" Version="0.1.*" />
+    <PackageReference Include="VRising.VampireCommandFramework" Version="0.8.*" />
+  </ItemGroup>
+</Project>
