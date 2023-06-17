@@ -10,23 +10,23 @@ namespace PvPModes.Services;
 
 internal class PlayerService
 {
-	Dictionary<FixedString64, PlayerData> NamePlayerCache = new();
-	Dictionary<ulong, PlayerData> SteamPlayerCache = new();
+	Dictionary<FixedString64, PlayerData> NamePlayerP_Cache = new();
+	Dictionary<ulong, PlayerData> SteamPlayerP_Cache = new();
 
 	internal bool TryFindSteam(ulong steamId, out PlayerData playerData)
 	{
-		return SteamPlayerCache.TryGetValue(steamId, out playerData);
+		return SteamPlayerP_Cache.TryGetValue(steamId, out playerData);
 	}
 
 	internal bool TryFindName(FixedString64 name, out PlayerData playerData)
 	{
-		return NamePlayerCache.TryGetValue(name, out playerData);
+		return NamePlayerP_Cache.TryGetValue(name, out playerData);
 	}
 
 	internal PlayerService()
 	{
-		NamePlayerCache.Clear();
-		SteamPlayerCache.Clear();
+		NamePlayerP_Cache.Clear();
+		SteamPlayerP_Cache.Clear();
 		EntityQuery query = Core.EntityManager.CreateEntityQuery(new EntityQueryDesc()
 		{
 			All = new ComponentType[]
@@ -41,26 +41,26 @@ internal class PlayerService
 			var userData = Core.EntityManager.GetComponentData<User>(entity);
 			PlayerData playerData = new PlayerData(userData.CharacterName, userData.PlatformId, userData.IsConnected, entity, userData.LocalCharacter._Entity);
 
-			NamePlayerCache.TryAdd(userData.CharacterName.ToString().ToLower(), playerData);
-			SteamPlayerCache.TryAdd(userData.PlatformId, playerData);
+			NamePlayerP_Cache.TryAdd(userData.CharacterName.ToString().ToLower(), playerData);
+			SteamPlayerP_Cache.TryAdd(userData.PlatformId, playerData);
 		}
 
 
-		var onlinePlayers = NamePlayerCache.Values.Where(p => p.IsOnline).Select(p => $"\t{p.CharacterName}");
-		Core.Log.LogWarning($"Player Cache Created with {NamePlayerCache.Count} entries total, listing {onlinePlayers.Count()} online:");
+		var onlinePlayers = NamePlayerP_Cache.Values.Where(p => p.IsOnline).Select(p => $"\t{p.CharacterName}");
+		Core.Log.LogWarning($"Player P_Cache Created with {NamePlayerP_Cache.Count} entries total, listing {onlinePlayers.Count()} online:");
 		Core.Log.LogWarning(string.Join("\n", onlinePlayers));
 	}
 
-	internal void UpdatePlayerCache(Entity userEntity, string oldName, string newName, bool forceOffline = false)
+	internal void UpdatePlayerP_Cache(Entity userEntity, string oldName, string newName, bool forceOffline = false)
 	{
 		var userData = Core.EntityManager.GetComponentData<User>(userEntity);
-		NamePlayerCache.Remove(oldName.ToLower());
+		NamePlayerP_Cache.Remove(oldName.ToLower());
 
 		if (forceOffline) userData.IsConnected = false;
 		PlayerData playerData = new PlayerData(newName, userData.PlatformId, userData.IsConnected, userEntity, userData.LocalCharacter._Entity);
 
-		NamePlayerCache[newName.ToLower()] = playerData;
-		SteamPlayerCache[userData.PlatformId] = playerData;
+		NamePlayerP_Cache[newName.ToLower()] = playerData;
+		SteamPlayerP_Cache[userData.PlatformId] = playerData;
 	}
 
 	internal bool RenamePlayer(Entity userEntity, Entity charEntity, FixedString64 newName)
@@ -80,7 +80,7 @@ internal class PlayerService
 		};
 
 		des.RenameUser(fromCharacter, renameEvent);
-		UpdatePlayerCache(userEntity, userData.CharacterName.ToString(), newName.ToString());
+		UpdatePlayerP_Cache(userEntity, userData.CharacterName.ToString(), newName.ToString());
 		return true;
 	}
 }

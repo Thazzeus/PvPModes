@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<AssemblyName>PvPModes</AssemblyName>
@@ -19,5 +19,9 @@
 	<PackageReference Include="VRising.Bloodstone" Version="0.1.4" />
 	<PackageReference Include="VRising.Unhollowed.Client" Version="0.6.5.*" />
 	<PackageReference Include="VRising.VampireCommandFramework" Version="0.8.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Hooks\" />
+    <Folder Include="Systems\" />
   </ItemGroup>
 </Project>

@@ -25,7 +25,7 @@ public static class OnUserConnected_Patch
 			if (!isNewVampire)
 			{
 				var playerName = userData.CharacterName.ToString();
-				Core.Players.UpdatePlayerCache(userEntity, playerName, playerName);
+				Core.Players.UpdatePlayerP_Cache(userEntity, playerName, playerName);
 			}
 		}
 		catch (Exception e)
@@ -50,7 +50,7 @@ public static class OnUserDisconnected_Patch
 			if (!isNewVampire)
 			{
 				var playerName = userData.CharacterName.ToString();
-				Core.Players.UpdatePlayerCache(serverClient.UserEntity, playerName, playerName, true);
+				Core.Players.UpdatePlayerP_Cache(serverClient.UserEntity, playerName, playerName, true);
 				Core.Log.LogDebug($"Player {playerName} disconnected");
 			}
 		}
@@ -78,7 +78,7 @@ public class Destroy_TravelBuffSystem_Patch
 				var userEntity = __instance.EntityManager.GetComponentData<PlayerCharacter>(owner).UserEntity;
 				var playerName = __instance.EntityManager.GetComponentData<User>(userEntity).CharacterName.ToString();
 
-				Core.Players.UpdatePlayerCache(userEntity, playerName, playerName);
+				Core.Players.UpdatePlayerP_Cache(userEntity, playerName, playerName);
 			}
 		}
 
