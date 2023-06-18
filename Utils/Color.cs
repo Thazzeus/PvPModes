@@ -1,6 +1,6 @@
-﻿namespace PvPModes.Utils
+namespace PvPModes.Utils
 {
-    public class Color
+    public class P_Color
     {
         private static string ColorText(string color, string text)
         {

@@ -1,4 +1,4 @@
-using System.Text.RegularExpressions;
+/*using System.Text.RegularExpressions;
 
 using PvPModes;
 using PvPModes.Commands.Converters;
@@ -47,3 +47,4 @@ public static class RenameCommands
 		}
 	}
 }
+*/

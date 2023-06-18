@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace PvPModes.Services;
 internal class UnitSpawnerService
-{
+{ /*
 	private static Entity empty_entity = new Entity();
 
 	internal const int DEFAULT_MINRANGE = 1;
@@ -102,4 +102,5 @@ internal class UnitSpawnerService
 			}
 		}
 	}
+}*/
 }

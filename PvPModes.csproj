@@ -12,6 +12,17 @@
 	<Target Name="Thunderstore Copy to Dist" AfterTargets="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
 		<Copy SourceFiles="$(OutDir)\PvPModes.dll" DestinationFolder="$(ProjectDir)/dist" />
 	</Target>
+	<ItemGroup>
+	  <Compile Remove="Patches\**" />
+	  <EmbeddedResource Remove="Patches\**" />
+	  <None Remove="Patches\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="Helper.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="dist\plugins - Shortcut.lnk" />
+	</ItemGroup>
   <ItemGroup>
 	<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.668" IncludeAssets="compile" />
 	<PackageReference Include="BepInEx.Core" Version="6.0.0-be.668" IncludeAssets="compile" />

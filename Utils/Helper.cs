@@ -312,42 +312,32 @@ namespace PvPModes.Utils
             em.SetComponentData(entity, KickEvent);
         }
 
-        public static void AddItemToInventory(ChatCommandContext ctx, PrefabGUID guid, int amount)
-        {
-            /*
-            unsafe
-            {
-                var gameData = Plugin.Server.GetExistingSystem<GameDataSystem>();
-                var bytes = stackalloc byte[Marshal.SizeOf<FakeNull>()];
-                var bytePtr = new IntPtr(bytes);
-                Marshal.StructureToPtr<FakeNull>(new()
-                {
-                    value = 7,
-                    has_value = true
-                }, bytePtr, false);
-                var boxedBytePtr = IntPtr.Subtract(bytePtr, 0x10);
-                var hack = new Il2CppSystem.Nullable<int>(boxedBytePtr);
-                var sets = new AddItemSettings();
-                sets.DropRemainder = true;
-                sets.EquipIfPossible = true;
-                var hasAdded = InventoryUtilitiesServer.TryAddItem(sets,ctx.Event.SenderCharacterEntity, guid ,amount);
-            }*/
+		public static Entity AddItemToInventory(Entity recipient, PrefabGUID guid, int amount)
+		{
+			try
+			{
+				var gameData = Core.Server.GetExistingSystem<GameDataSystem>();
+				var itemSettings = AddItemSettings.Create(Core.EntityManager, gameData.ItemHashLookupMap);
+				var inventoryResponse = InventoryUtilitiesServer.TryAddItem(itemSettings, recipient, guid, amount);
 
-            var gameData = Plugin.Server.GetExistingSystem<GameDataSystem>();
-            var itemSettings = AddItemSettings.Create(Plugin.Server.EntityManager, gameData.ItemHashLookupMap);
-            var inventoryResponse = InventoryUtilitiesServer.TryAddItem(itemSettings, ctx.Event.SenderCharacterEntity, guid, amount);
-            //return inventoryResponse.NewEntity;
-        }
+				return inventoryResponse.NewEntity;
+			}
+			catch (Exception e)
+			{
+				Core.LogException(e);
+			}
+			return new Entity();
+		}
 
-        public static BloodType GetBloodTypeFromName(string name)
-        {
-            BloodType type = BloodType.Frailed;
-            if (Enum.IsDefined(typeof(BloodType), CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name)))
-                Enum.TryParse(name, true, out type);
-            return type;
-        }
+		public static BloodType GetBloodTypeFromName(string name)
+		{
+			BloodType type = BloodType.Frailed;
+			if (Enum.IsDefined(typeof(BloodType), CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name)))
+				Enum.TryParse(name, true, out type);
+			return type;
+		}
 
-        public static PrefabGUID GetSourceTypeFromName(string name)
+		public static PrefabGUID GetSourceTypeFromName(string name)
         {
             PrefabGUID type;
             name = name.ToLower();

@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using ProjectM;
 using ProjectM.Network;
 using Unity.Collections;
@@ -6,7 +6,7 @@ using Unity.Entities;
 using PvPModes.Utils;
 
 namespace PvPModes.Hooks
-{/*
+{
     [HarmonyPatch(typeof(ChatMessageSystem), nameof(ChatMessageSystem.OnUpdate))]
     public class ChatMessageSystem_Patch
     {
@@ -33,5 +33,5 @@ namespace PvPModes.Hooks
             }
             return true;
         }
-    }*/
+    }
 }

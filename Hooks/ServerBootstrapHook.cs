@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Il2CppSystem;
 using ProjectM;
 using ProjectM.Auth;
 using ProjectM.Gameplay.Systems;
@@ -10,6 +11,9 @@ using PvPModes.Utils;
 using Stunlock.Network;
 using System;
 using System.Reflection;
+using Unity.DebugDisplay;
+using static Unity.Entities.Conversion.IncrementalConversionContext.RemoveFromHierarchy;
+
 
 namespace PvPModes.Hooks
 {
@@ -31,16 +35,21 @@ namespace PvPModes.Hooks
     public class ServerGameSetting_Patch
     {
         private static bool isInitialized = false;
-        public static void Postfix()
+		public static void Postfix()
         {
-            if (isInitialized == false)
+			//System.Console.WriteLine("Checking if isInit is T/F");
+			//System.Console.WriteLine(isInitialized);
+			if (isInitialized == false)
             {
-                Plugin.Initialize();
-                isInitialized = true;
-            }
+				System.Console.WriteLine("Init is False..");
+				Plugin.Initialize();
+				System.Console.WriteLine("Init is now set to True..");
+				isInitialized = true;
+				System.Console.WriteLine("ServerGameSetting_Patch Complete..");
+			}
         }
     }
-    /*
+    /*  ///COMMENTED OUT PRIOR --THAZZEUS
     [HarmonyPatch(typeof(HandleGameplayEventsSystem), nameof(HandleGameplayEventsSystem.OnUpdate))]
     public class InitializationPatch
     {
@@ -57,8 +66,9 @@ namespace PvPModes.Hooks
     {
         public static void Postfix()
         {
-            Plugin.Initialize();
-        }
+			Plugin.Initialize();
+			System.Console.WriteLine("GameBootstrat Complete..");
+		}
     }
 
     [HarmonyPatch(typeof(GameBootstrap), nameof(GameBootstrap.OnApplicationQuit))]

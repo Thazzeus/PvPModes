@@ -1,4 +1,4 @@
-﻿using PvPModes.Systems;
+using PvPModes.Systems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using Unity.Entities;
 using UnityEngine;
 
 namespace PvPModes.Utils
-{/*
+{
     public class CommandHandler
     {
         public static string Prefix = ".";
@@ -21,7 +21,7 @@ namespace PvPModes.Utils
             if (ev.Message.Contains(' '))
                 args = ev.Message.Split(' ').Skip(1).ToArray();
 
-            var types = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetCustomAttributes(typeof(CommandAttribute), false).Length > 0).ToArray();
+            var types = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetCustomAttributes(typeof(P_CommandAttribute), false).Length > 0).ToArray();
             float getCurrentTime = Time.realtimeSinceStartup;
             foreach (Type type in types)
             {
@@ -53,7 +53,7 @@ namespace PvPModes.Utils
         private static bool NameExists(Type type, string command, out string primary)
         {
             primary = "invalid";
-            List<string> aliases = type.GetAttributeValue((CommandAttribute cmd) => cmd.Aliases);
+            List<string> aliases = type.GetAttributeValue((P_CommandAttribute cmd) => cmd.Aliases);
             if (aliases.Any(x => x.ToLower() == command.ToLower()))
             {
                 primary = aliases.First().ToLower();
@@ -64,7 +64,7 @@ namespace PvPModes.Utils
     }
 
     [AttributeUsage(AttributeTargets.Class)]
-    public class CommandAttribute : Attribute
+    public class P_CommandAttribute : Attribute
     {
         public List<string> Aliases;
 
@@ -73,7 +73,7 @@ namespace PvPModes.Utils
         public string Description { get; set; }
         public int ReqPermission { get; set; }
 
-        public CommandAttribute(string name, string usage = "", string description = "None", int reqPermission = 100)
+        public P_CommandAttribute(string name, string usage = "", string description = "None", int reqPermission = 100)
         {
             Name = name;
             Usage = usage;
@@ -113,5 +113,5 @@ namespace PvPModes.Utils
             }
             return default;
         }
-    }*/
+    }
 }

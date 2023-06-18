@@ -14,10 +14,10 @@ internal static class Core
 
 	public static EntityManager EntityManager { get; } = Server.EntityManager;
 
-	public static ManualLogSource Log { get; } = Plugin.PluginLog;
+	public static ManualLogSource Log { get; } = Plugin.Logger;
 	public static PlayerService Players { get; internal set; }
 
-	public static UnitSpawnerService UnitSpawner { get; internal set; }
+	//COMMENTED UNTIL NEEDED --THAZZEUSpublic static UnitSpawnerService UnitSpawner { get; internal set; }
 
 	public static PrefabService Prefabs { get; internal set; }
 
@@ -33,7 +33,7 @@ internal static class Core
 
 		// TODO: probably changing when I refactor further.
 		Players = new();
-		UnitSpawner = new();
+		//COMMENTED UNTIL NEEDED --THAZZEUS UnitSpawner = new();
 		Prefabs = new();
 		_hasInitialized = true;
 		Log.LogInfo($"{nameof(InitializeAfterLoaded)} completed");

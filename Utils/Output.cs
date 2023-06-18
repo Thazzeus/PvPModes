@@ -1,4 +1,4 @@
-﻿using ProjectM;
+using ProjectM;
 using ProjectM.Network;
 using PvPModes.Hooks;
 using System;
@@ -13,23 +13,23 @@ namespace PvPModes.Utils
 {
     public static class Output
     {
-        /*
+        
         public static void CustomErrorMessage(Context ctx, string message)
         {
-            ServerChatUtils.SendSystemMessageToClient(ctx.EntityManager, ctx.Event.User, $"<color=#ff0000>{message}</color>");
-        }*/
+			ServerChatUtils.SendSystemMessageToClient(ctx.EntityManager, ctx.Event.User, $"<color=#ff0000>{message}</color>");
+        }
 
         public static void CustomErrorMessage(VChatEvent ev, string message)
         {
             ServerChatUtils.SendSystemMessageToClient(Plugin.Server.EntityManager, ev.User, $"<color=#ff0000>{message}</color>");
         }
-        /*
+        
         public static void SendSystemMessage(Context ctx, string message)
-        {
+		{
             ServerChatUtils.SendSystemMessageToClient(ctx.EntityManager, ctx.Event.User, $"{message}");
-        }*/
+        }
 
-        public static void SendSystemMessage(VChatEvent ev, string message)
+		public static void SendSystemMessage(VChatEvent ev, string message)
         {
             ServerChatUtils.SendSystemMessageToClient(Plugin.Server.EntityManager, ev.User, $"{message}");
         }
@@ -38,18 +38,18 @@ namespace PvPModes.Utils
         {
             ServerChatUtils.SendSystemMessageToClient(Plugin.Server.EntityManager, ev.User, $"<color=#ff0000>Invalid command.</color>");
         }
-        /*
+        
         public static void InvalidArguments(Context ctx)
-        {
+		{
             ServerChatUtils.SendSystemMessageToClient(ctx.EntityManager, ctx.Event.User, $"<color=#ff0000>Invalid command parameters. Check {ctx.Prefix}help [<command>] for more information.</color>");
         }
 
         public static void MissingArguments(Context ctx)
-        {
+		{
             ServerChatUtils.SendSystemMessageToClient(ctx.EntityManager, ctx.Event.User, $"<color=#ff0000>Missing command parameters. Check {ctx.Prefix}help [<command>] for more information.</color>");
-        }*/
+        }
 
-        public static void SendLore(Entity userEntity, string message)
+		public static void SendLore(Entity userEntity, string message)
         {
 
 
@@ -86,6 +86,6 @@ namespace PvPModes.Utils
 
             em.SetComponentData(entity, ev);
             */
-        }
+		}
     }
 }

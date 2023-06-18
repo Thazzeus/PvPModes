@@ -1,4 +1,4 @@
-using PvPModes.Commands.Converters;
+/*using PvPModes.Commands.Converters;
 using ProjectM;
 using Unity.Entities;
 using VampireCommandFramework;
@@ -36,3 +36,4 @@ public static class ResetCooldown
 		ctx.Reply($"Player \"{name}\" cooldown reset.");
 	}
 }
+*/

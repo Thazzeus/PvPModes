@@ -1,4 +1,4 @@
-using PvPModes.Commands.Converters;
+/*using PvPModes.Commands.Converters;
 using Il2CppSystem;
 using ProjectM;
 using Unity.Entities;
@@ -30,3 +30,4 @@ internal class ReviveCommands
 		ctx.Reply("Revived");
 	}
 }
+*/

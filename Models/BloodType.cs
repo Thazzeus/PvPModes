@@ -1,6 +1,6 @@
 namespace PvPModes.Models;
 
-public enum BloodType
+public enum P_BloodType
 {
     Frailed = -899826404,
     Creature = -77658840,

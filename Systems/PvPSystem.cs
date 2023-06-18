@@ -273,8 +273,8 @@ namespace PvPModes.Systems
                 Helper.RenamePlayer(killer_userEntity, KillerEntity, killer_name);
             }
 
-            ServerChatUtils.SendSystemMessageToClient(em, victim_user, Utils.Color.Red($"You've been defeated by \"{killer_name}\""));
-            if (isAnnounceKills) ServerChatUtils.SendSystemMessageToAllClients(em, $"Vampire {Utils.Color.Red(killer_name)} has defeated {Utils.Color.Green(victim_name)}!");
+            ServerChatUtils.SendSystemMessageToClient(em, victim_user, Utils.P_Color.Red($"You've been defeated by \"{killer_name}\""));
+            if (isAnnounceKills) ServerChatUtils.SendSystemMessageToAllClients(em, $"Vampire {Utils.P_Color.Red(killer_name)} has defeated {Utils.P_Color.Green(victim_name)}!");
         }
 
         public static bool HostileON(ulong SteamID, Entity playerEntity, Entity userEntity)
@@ -337,7 +337,7 @@ namespace PvPModes.Systems
                 if (siegeData.IsSiegeOn == false)
                 {
                     P_Cache.SteamPlayerP_Cache.TryGetValue(SteamID, out var playerData);
-                    ServerChatUtils.SendSystemMessageToAllClients(em, $"{Utils.Color.Red(playerData.CharacterName.ToString())} has entered {Color.Red("Active Siege")}!");
+                    ServerChatUtils.SendSystemMessageToAllClients(em, $"{Utils.P_Color.Red(playerData.CharacterName.ToString())} has entered {P_Color.Red("Active Siege")}!");
 
                     siegeData.IsSiegeOn = true;
                     siegeData.SiegeEndTime = DateTime.Now.AddMinutes(PvPSystem.SiegeDuration);
@@ -356,7 +356,7 @@ namespace PvPModes.Systems
                 if (siegeData.IsSiegeOn == false)
                 {
                     P_Cache.SteamPlayerP_Cache.TryGetValue(SteamID, out var playerData);
-                    ServerChatUtils.SendSystemMessageToAllClients(em, $"{Utils.Color.Red(playerData.CharacterName.ToString())} has entered {Color.Red("Active Siege")}!");
+                    ServerChatUtils.SendSystemMessageToAllClients(em, $"{Utils.P_Color.Red(playerData.CharacterName.ToString())} has entered {P_Color.Red("Active Siege")}!");
                 }
                 siegeData.IsSiegeOn = true;
                 siegeData.SiegeEndTime = DateTime.MinValue;
@@ -408,17 +408,17 @@ namespace PvPModes.Systems
             var List = SortedList.Skip(page * recordsPerPage).Take(recordsPerPage);
             int order = (page * recordsPerPage);
             messages.Add($"============ Siege List [{page+1}/{maxPage}] ============");
-            if (List.Count() == 0) messages.Add(Utils.Color.White("No Result"));
+            if (List.Count() == 0) messages.Add(Utils.P_Color.White("No Result"));
             else
             {
                 foreach (var result in List)
                 {
                     order++;
-                    string PlayerName = Utils.Color.Teal(P_Cache.SteamPlayerP_Cache[result.Key].CharacterName.ToString());
+                    string PlayerName = Utils.P_Color.Teal(P_Cache.SteamPlayerP_Cache[result.Key].CharacterName.ToString());
                     TimeSpan span = result.Value.SiegeEndTime - DateTime.Now;
                     var hSpan = Math.Round(span.TotalHours, 2);
                     string tempDisplay = "[Duration " + hSpan + " hour(s)]";
-                    string DisplayStats = Utils.Color.White(tempDisplay);
+                    string DisplayStats = Utils.P_Color.White(tempDisplay);
                     messages.Add($"{order}. {PlayerName} : {DisplayStats}");
                 }
             }
@@ -496,8 +496,8 @@ namespace PvPModes.Systems
                 P_Cache.OffenseLog[KillerSteamID] = OffenseData;
 
                 if (isAnnounceGrief) ServerChatUtils.SendSystemMessageToAllClients(Plugin.Server.EntityManager, $"" +
-                    $"Vampire {Color.Red(killerUserData.CharacterName.ToString())} (Lv.{KillerLevel}) " +
-                    $"grief-killed \"{Color.White(victimUserData.CharacterName.ToString())}\" (Lv.{VictimLevel})");
+                    $"Vampire {P_Color.Red(killerUserData.CharacterName.ToString())} (Lv.{KillerLevel}) " +
+                    $"grief-killed \"{P_Color.White(victimUserData.CharacterName.ToString())}\" (Lv.{VictimLevel})");
 
                 if (OffenseData.Offense >= OffenseLimit)
                 {
@@ -695,26 +695,26 @@ namespace PvPModes.Systems
                 myRank += 1;
                 if (pair.Key == ctx.Event.User.PlatformId)
                 {
-                    messages.Add(Utils.Color.Green($"You're rank number #{myRank}!"));
+                    messages.Add(Utils.P_Color.Green($"You're rank number #{myRank}!"));
                     break;
                 }
             }
 
             messages.Add($"============ Leaderboard ============");
-            if (List.Count() == 0) messages.Add(Utils.Color.White("No Result"));
+            if (List.Count() == 0) messages.Add(Utils.P_Color.White("No Result"));
             else
             {
                 int i = 0;
                 foreach (var result in List)
                 {
                     i++;
-                    string PlayerName = Utils.Color.Teal(result.Value.PlayerName);
+                    string PlayerName = Utils.P_Color.Teal(result.Value.PlayerName);
                     string tempDisplay = "[K/D " + result.Value.KD.ToString() + "]";
                     if (isHonorSystemEnabled)
                     {
                         tempDisplay += " [REP " + result.Value.Reputation.ToString() + "]";
                     }
-                    string DisplayStats = Utils.Color.White(tempDisplay);
+                    string DisplayStats = Utils.P_Color.White(tempDisplay);
                     messages.Add($"{i}. {PlayerName} : {DisplayStats}");
                 }
             }

@@ -1,4 +1,4 @@
-﻿using PvPModes.Commands.Converters;
+/*using PvPModes.Commands.Converters;
 using ProjectM;
 using VampireCommandFramework;
 
@@ -14,4 +14,4 @@ public class KillCommands
 
 		ctx.Reply($"Killed {player?.Value.CharacterName ?? "you"}.");
 	}
-}
+}*/
